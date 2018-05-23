@@ -10,7 +10,7 @@
  *    written permission of Shanghai Mi-Me Financial Information Service Co., Ltd.
  * -------------------------------------------------------------------------------------
  */
-package com.fishfree.juc;
+package com.fishfree.juc.readwrite;
 
 import java.util.HashMap;
 import java.util.Map;
