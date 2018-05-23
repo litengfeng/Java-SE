@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fishfree</groupId>
+    <artifactId>java-se</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+
+    <!--配置maven仓库位jboss的仓库-->
+    <repositories>
+        <repository>
+            <!--仓库声明的唯一id，尤其需要注意的是，Maven自带的中央仓库使用
+            的id为central，如果其他仓库声明也使用该id，就会覆盖中央仓库的配置。-->
+            <id>jboss</id>
+            <!--仓库的名称，让我们直观方便的知道仓库是哪个，暂时没发现其他太大的含义-->
+            <name>jboss repository</name>
+            <!--指向了仓库的地址，一般来说，该地址都基于http协议，
+            Maven用户都可以在浏览器中打开仓库地址浏览构件。-->
+            <url>http://repository.jboss.com/maven2/</url>
+            <releases>
+                <!--表示开启JBoss仓库的发布版本下载支持-->
+                <enabled>true</enabled>
+                <!--配置Maven从远处仓库检查更新的频率-->
+                <!--never-从不检查更新；always-每次构建都检查更新；
+                interval：X-每隔X分钟检查一次更新-->
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <!--关闭JBoss仓库的快照版本的下载支持-->
+                <enabled>false</enabled>
+            </snapshots>
+            <!--元素值default表示仓库的布局是Maven2及Maven3的默认布局，而不是Maven1的布局-->
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+</project>
