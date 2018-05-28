@@ -1,0 +1,16 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <!--应用程序在应用服务器中显示的名字，在tomcat的管理页面中显示标签display-name配置的名字-->
+    <display-name>java web</display-name>
+
+    <servlet>
+        <servlet-name>first servlet</servlet-name>
+        <servlet-class>com.fishfree.javaweb.servlet.FirstServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>first servlet</servlet-name>
+        <url-pattern>/greeting</url-pattern>
+    </servlet-mapping>
+</web-app>
