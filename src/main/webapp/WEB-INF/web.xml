@@ -4,6 +4,35 @@
     <!--应用程序在应用服务器中显示的名字，在tomcat的管理页面中显示标签display-name配置的名字-->
     <display-name>java web</display-name>
 
+    
+    <context-param>
+        <param-name>context_param1</param-name>
+        <param-value>1</param-value>
+    </context-param>
+    <context-param>
+        <param-name>context_param2</param-name>
+        <param-value>2</param-value>
+    </context-param>
+
+
+
+    <servlet>
+        <servlet-name>servletParameterServlet</servlet-name>
+        <servlet-class>com.fishfree.javaweb.servlet.ContextParameterServlet</servlet-class>
+        <init-param>
+            <param-name>server</param-name>
+            <param-value>mysql</param-value>
+        </init-param>
+        <init-param>
+            <param-name>database</param-name>
+            <param-value>user</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletParameterServlet</servlet-name>
+        <url-pattern>/servletParameter</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>first servlet</servlet-name>
         <servlet-class>com.fishfree.javaweb.servlet.FirstServlet</servlet-class>

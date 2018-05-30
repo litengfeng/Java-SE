@@ -13,6 +13,8 @@
 package com.fishfree.javaweb.servlet;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,31 +23,19 @@ import java.io.IOException;
 /**
  * @author litengfeng
  * @version 1.0
- * @date 2018/5/24 16:36
+ * @date 2018/5/29 10:33
  * @project javase
  */
 
-//所有的http请求的servlet都继承HttpServlet
-public class FirstServlet extends HttpServlet {
-    @Override
-    public void init() throws ServletException {
-        System.out.println("servlet init method invoke");
-    }
+@WebServlet(name = "ticketServlet", urlPatterns = "/ticketServlet", loadOnStartup = 1)
+@MultipartConfig(maxFileSize = 20 * 1024 * 1024L,//禁止上传超过20M的文件
+        maxRequestSize = 40 * 1024 * 102
 
+
+)
+public class TicketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //处理http请求是get方法的
-        //直接返回first servlet
-        resp.getWriter().println("first servlet");
-        System.out.println("doGet method invoke");
-        System.out.println("request URL :" + req.getRequestURL());
-        System.out.println("request URI :" + req.getRequestURI());
-        System.out.println();
-
-    }
-
-    @Override
-    public void destroy() {
-        System.out.println("destroy method invoke");
+        super.doGet(req, resp);
     }
 }

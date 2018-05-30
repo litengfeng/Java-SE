@@ -12,7 +12,10 @@
  */
 package com.fishfree.javaweb.servlet;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,31 +24,24 @@ import java.io.IOException;
 /**
  * @author litengfeng
  * @version 1.0
- * @date 2018/5/24 16:36
+ * @date 2018/5/28 18:10
  * @project javase
  */
-
-//所有的http请求的servlet都继承HttpServlet
-public class FirstServlet extends HttpServlet {
-    @Override
-    public void init() throws ServletException {
-        System.out.println("servlet init method invoke");
-    }
+//使用注解方式
+@WebServlet(
+        name = "servletParameterServlet",
+        urlPatterns = {"/servletParameter"},
+        initParams = {@WebInitParam(name = "server", value = "mysql")
+                , @WebInitParam(name = "database", value = "user")}
+)
+public class ServletParameterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //处理http请求是get方法的
-        //直接返回first servlet
-        resp.getWriter().println("first servlet");
-        System.out.println("doGet method invoke");
-        System.out.println("request URL :" + req.getRequestURL());
-        System.out.println("request URI :" + req.getRequestURI());
-        System.out.println();
-
-    }
-
-    @Override
-    public void destroy() {
-        System.out.println("destroy method invoke");
+        //使用servletConfig类进行获取
+        ServletConfig sc = this.getServletConfig();
+        String server = sc.getInitParameter("server");
+        String database = sc.getInitParameter("database");
+        resp.getWriter().println("server : [" + server + "] database : [" + database + "]");
     }
 }
