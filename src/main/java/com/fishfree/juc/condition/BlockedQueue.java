@@ -36,19 +36,29 @@ public class BlockedQueue<T> {
 
     //当前数组元素个数
     private int count;
+    //添加元素的下标位置
     private int addIndex;
+    //删除元素的下标位置
     private int removeIndex;
 
     private Lock lock = new ReentrantLock();
+    //队列未满信号
     private Condition notFull = lock.newCondition();
+    //队列不为空信号
     private Condition notEmpty = lock.newCondition();
+    private final static int DEFAULT_SIZE = 1000;
+
+    public BlockedQueue() {
+        //初始化数组，大小为默认大小
+        objects = new Object[DEFAULT_SIZE];
+    }
 
     public BlockedQueue(int size) {
         //初始化数组
         objects = new Object[size];
     }
 
-    public void add(T t) throws InterruptedException {
+    public boolean add(T t) throws InterruptedException {
         lock.lock();
         try {
             while (count == objects.length) {
@@ -60,12 +70,14 @@ public class BlockedQueue<T> {
             objects[addIndex++] = t;
             //等于数组的大小
             if (addIndex == objects.length) {
+                //循环添加队列元素
                 addIndex = 0;
             }
             count++;
             //发送notEmpty信号
             System.out.println("send notEmpty signal");
             notEmpty.signal();
+            return true;
         } finally {
             lock.unlock();
         }
