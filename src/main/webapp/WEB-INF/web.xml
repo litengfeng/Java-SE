@@ -14,7 +14,11 @@
         <param-value>2</param-value>
     </context-param>
 
-
+    <!-- Context Configuration locations for Spring XML files -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:applicationContext*.xml</param-value>
+    </context-param>
 
     <servlet>
         <servlet-name>servletParameterServlet</servlet-name>

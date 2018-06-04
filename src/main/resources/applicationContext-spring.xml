@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--<context:annotation-config/>-->
+
+    <!--开启自动装载，检查，开启这个便签后隐含式的开通了context:annotation-config标签-->
+    <context:component-scan base-package="com.fishfree.spring">
+    </context:component-scan>
+
+    <!--配置redis连接工厂-->
+    <bean id="redisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:use-pool = "true"
+          p:hostName="localhost"
+          p:port="6379"
+          p:password=""
+        />
+
+    <!--配置redis模版-->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+          p:connectionFactory-ref="redisConnFactory">
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+    </bean>
+
+</beans>
