@@ -10,8 +10,7 @@
     <!--<context:annotation-config/>-->
 
     <!--开启自动装载，检查，开启这个便签后隐含式的开通了context:annotation-config标签-->
-    <context:component-scan base-package="com.fishfree.spring">
-    </context:component-scan>
+    <context:component-scan base-package="com.fishfree.spring"/>
 
     <!--配置redis连接工厂-->
     <bean id="redisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
